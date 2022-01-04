@@ -1,0 +1,16 @@
+{
+  "name": "integration-tests",
+  "version": "1.0.0",
+  "description": "integration tests for deeper-chain",
+  "scripts": {
+    "test": "jest --runInBand --forceExit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@polkadot/api": "^7.2.1",
+    "@polkadot/util": "^8.2.2",
+    "@polkadot/util-crypto": "^8.2.2",
+    "jest": "^27.4.5"
+  }
+}
