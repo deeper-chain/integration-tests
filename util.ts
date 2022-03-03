@@ -18,3 +18,11 @@ export async function createApi(): Promise<ApiPromise> {
 export function getAlice() {
     return keyring.addFromUri('//Alice');
 }
+
+export function getTestAccount1() {
+    return keyring.addFromMnemonic('ladder fluid joke certain identify nominee infant size protect post obtain reform');
+}
+
+export async function delay(ms: number): Promise<any> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
