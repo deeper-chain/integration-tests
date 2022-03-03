@@ -1,12 +1,19 @@
 module.exports = async () => {
   return {
     verbose: true,
+    preset: 'ts-jest',
     testEnvironment: 'jest-environment-node',
     testTimeout: 60000,
     moduleNameMapper: {
       '^@polkadot/api$': '@polkadot/api/index.cjs',
       '^@polkadot/api-derive$': '@polkadot/api-derive/index.cjs',
       '^@polkadot/api-derive/(.*)': '@polkadot/api-derive/$1.cjs',
+      '^@polkadot/api-augment$': '@polkadot/api-augment/index.cjs',
+      '^@polkadot/api-augment/(.*)': '@polkadot/api-augment/$1.cjs',
+      '^@polkadot/api-base$': '@polkadot/api-base/index.cjs',
+      '^@polkadot/api-base/(.*)': '@polkadot/api-base/$1.cjs',
+      '^@polkadot/types-augment$': '@polkadot/types-augment/index.cjs',
+      '^@polkadot/types-augment/(.*)': '@polkadot/types-augment/$1.cjs',
       '^@polkadot/rpc-core$': '@polkadot/rpc-core/index.cjs',
       '^@polkadot/rpc-core/(.*)': '@polkadot/rpc-core/$1.cjs',
       '^@polkadot/rpc-provider$': '@polkadot/rpc-provider/index.cjs',
