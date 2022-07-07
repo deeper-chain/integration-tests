@@ -15,6 +15,24 @@ export async function createApi(): Promise<ApiPromise> {
     return api;
 }
 
+let api: Promise<ApiPromise> | null = null;
+export async function getApi(): Promise<ApiPromise> {
+    if (api) {
+        return api;
+    }
+    const provider = new WsProvider('ws://127.0.0.1:9944?test=1');
+    provider.on('connected', () => {
+        console.log('ws connected only once');
+    });
+
+    api = ApiPromise.create({
+        provider,
+        types: deeperTypes,
+    });
+
+    return api;
+}
+
 export function getAlice() {
     return keyring.addFromUri('//Alice');
 }
