@@ -1,5 +1,5 @@
 import { ApiPromise } from '@polkadot/api';
-import { createApi, getAlice, delay, getApi } from './util';
+import { getApi } from './util';
 
 test("sequence call only connect once", async () => {
     const api1 = await getApi();

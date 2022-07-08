@@ -25,9 +25,12 @@ export async function getApi(): Promise<ApiPromise> {
         console.log('ws connected only once');
     });
 
-    api = ApiPromise.create({
+    const api1 = ApiPromise.create({
         provider,
         types: deeperTypes,
+    });
+    api = promiseWithTimeout(api1, 60000, (resolve: any) => {
+        resolve(null);
     });
 
     return api;
@@ -43,4 +46,18 @@ export function getTestAccount1() {
 
 export async function delay(ms: number): Promise<any> {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export async function promiseWithTimeout(promise: any, ms: number, onTimeout: any) {
+    let timer: any = null;
+
+    const timedPromise = new Promise((resolve, reject) => {
+        timer = setTimeout(() => {
+            onTimeout(resolve, reject);
+        }, ms);
+    });
+
+    return Promise.race([promise, timedPromise]).finally(() => {
+        clearTimeout(timer);
+    });
 }
