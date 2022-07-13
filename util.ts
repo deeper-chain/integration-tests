@@ -15,21 +15,19 @@ export async function createApi(): Promise<ApiPromise> {
     return api;
 }
 
-let api: Promise<ApiPromise> | null = null;
+let apiPromise: Promise<ApiPromise> | null = null;
 export async function getApi(): Promise<ApiPromise> {
-    if (api) {
-        return api;
+    if (!apiPromise) {
+        const provider = new WsProvider('ws://127.0.0.1:9944?test=1', 1000 * 60);
+        provider.on('connected', () => {
+            console.log('ws connected only once');
+        });
+        apiPromise = ApiPromise.create({
+            provider,
+            types: deeperTypes,
+        });
     }
-    const provider = new WsProvider('ws://127.0.0.1:9944?test=1');
-    provider.on('connected', () => {
-        console.log('ws connected only once');
-    });
-
-    const api1 = ApiPromise.create({
-        provider,
-        types: deeperTypes,
-    });
-    api = promiseWithTimeout(api1, 60000, (resolve: any) => {
+    const api = await promiseWithTimeout(apiPromise, 60000, (resolve: any) => {
         resolve(null);
     });
 
