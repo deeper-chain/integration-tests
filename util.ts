@@ -16,6 +16,7 @@ export async function createApi(): Promise<ApiPromise> {
 }
 
 let apiPromise: Promise<ApiPromise> | null = null;
+let resolveLogged = false;
 export async function getApi(): Promise<ApiPromise> {
     if (!apiPromise) {
         const provider = new WsProvider('ws://127.0.0.1:9944?test=1', 1000 * 60);
@@ -27,9 +28,13 @@ export async function getApi(): Promise<ApiPromise> {
             types: deeperTypes,
         });
     }
-    const api = await promiseWithTimeout(apiPromise, 60000, (resolve: any) => {
+    const api = await promiseWithTimeout(apiPromise, 10000, (resolve: any) => {
         resolve(null);
     });
+    if (api && !resolveLogged) { // reconnect doesn't display this log
+        console.log('API promise resolved');
+        resolveLogged = true;
+      }
 
     return api;
 }
