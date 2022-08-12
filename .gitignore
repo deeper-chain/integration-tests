@@ -1,3 +1,4 @@
 /node_modules
 /.vscode
 deeper-chain.compact.wasm
+/truffle-tests/build

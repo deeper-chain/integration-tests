@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "integration tests for deeper-chain",
   "scripts": {
+    "contract:compile": "cd truffle-tests; truffle compile",
+    "contract:deploy": "cd truffle-tests; truffle migrate",
     "test": "jest --runInBand --forceExit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@polkadot/api": "^8.8.1"
+    "@polkadot/api": "^8.8.1",
+    "@truffle/hdwallet-provider": "^2.0.13",
+    "truffle": "^5.5.26"
   },
   "devDependencies": {
     "@types/jest": "^27.5.1",
