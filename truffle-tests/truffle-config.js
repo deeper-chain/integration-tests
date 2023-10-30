@@ -42,9 +42,9 @@ module.exports = {
     //
     development: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 9933,            // Standard Ethereum port (default: none)
+      port: 9944,            // Standard Ethereum port (default: none)
       network_id: "518",       // Any network (default: none)
-      provider: () => new HDWalletProvider(mnemonic, 'http://127.0.0.1:9933'),
+      provider: () => new HDWalletProvider(mnemonic, 'http://127.0.0.1:9944'),
       gas: 10500000,
     },
     //
